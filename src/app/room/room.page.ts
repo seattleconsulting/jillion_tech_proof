@@ -20,4 +20,12 @@ export class RoomPage implements OnInit {
     });
   }
 
+  async signOut() {
+    try {
+      await firebase.auth().signOut();
+      this.navCtrl.navigateRoot('signin');
+
+    } catch (error) {}
+  }
+
 }

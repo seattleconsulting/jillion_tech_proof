@@ -37,6 +37,7 @@ export class SigninPage implements OnInit {
   }
 
   signUp() {
+    this.navCtrl.navigateForward('signup');
   }
 
 }
