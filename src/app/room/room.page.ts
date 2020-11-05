@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import firebase from 'firebase';
 
 @Component({
@@ -10,8 +10,7 @@ import firebase from 'firebase';
 export class RoomPage implements OnInit {
   rooms = [];
 
-  constructor(public navCtrl: NavController,
-    public alertController: AlertController) { }
+  constructor(public navCtrl: NavController) { }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -41,6 +40,10 @@ export class RoomPage implements OnInit {
       await firebase.auth().signOut();
       this.navCtrl.navigateRoot('signin');
     } catch (error) {}
+  }
+
+  addRoom() {
+    this.navCtrl.navigateForward('add-room');
   }
 
 }
