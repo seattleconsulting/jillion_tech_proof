@@ -8,6 +8,7 @@ import firebase from 'firebase';
   styleUrls: ['./room.page.scss'],
 })
 export class RoomPage implements OnInit {
+  rooms = [];
 
   constructor(public navCtrl: NavController,
     public alertController: AlertController) { }
@@ -15,10 +16,24 @@ export class RoomPage implements OnInit {
   ngOnInit() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        firebase.database().ref('chatrooms/').on('value', resp => {
+          if (resp) {
+            this.rooms = [];
+            resp.forEach(childSnapshot => {
+              const room = childSnapshot.val();
+              room.key = childSnapshot.key;
+              this.rooms.push(room);
+            });
+          }
+        });
       } else {
         this.navCtrl.navigateRoot('signin');
       }
     });
+  }
+
+  joinRoom(key) {
+    this.navCtrl.navigateRoot('chat/' + key);
   }
 
   async signOut() {
