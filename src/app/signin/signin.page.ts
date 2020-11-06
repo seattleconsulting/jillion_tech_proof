@@ -40,4 +40,8 @@ export class SigninPage implements OnInit {
     this.navCtrl.navigateForward('signup');
   }
 
+  signInWithPhone() {
+    this.navCtrl.navigateForward('phone-login');
+  }
+
 }
