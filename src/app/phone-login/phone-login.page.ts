@@ -9,7 +9,9 @@ import firebase from 'firebase';
   styleUrls: ['./phone-login.page.scss'],
 })
 export class PhoneLoginPage implements OnInit {
-  recaptchaVerifier:firebase.auth.RecaptchaVerifier;
+  recaptchaVerifier
+  :firebase.auth.RecaptchaVerifier;
+  phoneNumber = 81;
 
   constructor(public navCtrl: NavController, private router: Router, private alertCtrl: AlertController) {}
 
